@@ -17,7 +17,7 @@ describe('tiene que dar error con un solo parámetro (devolver NaN)', () => {
   });
 });
 
-describe('test de la función suma con valores positivos', () => {
+describe.skip('test de la función suma con valores positivos', () => {
   test('sumar 1 + 2 es igual a 3', () => {
     expect(suma(1, 2)).toBe(3);
   });
@@ -25,10 +25,13 @@ describe('test de la función suma con valores positivos', () => {
   test('sumar 0 + 0 debe ser 0', () => {
     expect(suma(0, 0)).toBe(0);
   });
+
+  //Para indicar test que nos faltan de implementar
+  test.todo('sumar 3.4 más 3.0 es igual a 6.4');
 });
 
 describe('test de la función suma con valores negaticos', () => {
-  test('sumar -1 + -1 es igual a -2', () => {
+  test.only('sumar -1 + -1 es igual a -2', () => {
     expect(suma(-1, -1)).toBe(-2);
   });
 
