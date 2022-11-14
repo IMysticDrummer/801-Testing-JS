@@ -1,5 +1,22 @@
 const suma = require('./suma');
 
+describe('un test más', () => {
+  it('should be 0 if both values are like a an -a', () => {
+    expect(suma(3, -3)).toBe(0);
+    expect(suma(4, -4)).toBe(0);
+    expect(suma(3, -3)).toBe(0);
+    //El siguiente test es correcto, pero no tiene relación con el describe que hemos
+    //agrupado
+    expect(suma(4, -3)).toBe(1);
+  });
+});
+
+describe('tiene que dar error con un solo parámetro (devolver NaN)', () => {
+  it('should break with just one parameter', () => {
+    expect(suma(3)).toBeNaN();
+  });
+});
+
 describe('test de la función suma con valores positivos', () => {
   test('sumar 1 + 2 es igual a 3', () => {
     expect(suma(1, 2)).toBe(3);

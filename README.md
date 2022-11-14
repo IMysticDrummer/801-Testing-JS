@@ -150,3 +150,6 @@ Es un framework que se basa en el comportamiento del código JavaScript dentro d
 - Framwork de testing tanto para NodeJS como para navegador
 - Muy parecido a mocha
 - Expande su librería de testing.
+
+instalar control sintáctico de jest
+npm i -D @types/jest
