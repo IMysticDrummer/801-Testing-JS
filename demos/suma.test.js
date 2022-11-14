@@ -1,4 +1,5 @@
-const suma = require('./suma');
+//const suma = require('./suma');
+import suma from './suma';
 
 describe('un test más', () => {
   it('should be 0 if both values are like a an -a', () => {
