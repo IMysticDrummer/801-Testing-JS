@@ -1,0 +1,22 @@
+{
+  "name": "repo-ivan",
+  "version": "1.0.0",
+  "description": "## Testing con Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMysticDrummer/801-Testing-JS.git"
+  },
+  "author": "Iván García",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IMysticDrummer/801-Testing-JS/issues"
+  },
+  "homepage": "https://github.com/IMysticDrummer/801-Testing-JS#readme",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
