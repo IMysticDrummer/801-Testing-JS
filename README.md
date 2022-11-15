@@ -166,6 +166,7 @@ Ejemplos:
 
 - axios-mock-adapter
 - jest-extended
+- httpbin.org --> para testar un endoint ciego.
 
 #### Hooks
 
