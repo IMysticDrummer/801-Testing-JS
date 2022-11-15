@@ -225,3 +225,66 @@ Soluciones de Jest:
   - Hay código en la app que, actualmente, no se usa y por lo tanto se puede eliminar ...
 - Está integrado con el flag _--coverage_, que nos devuelve una tabla en terminal dónde se especifica el porcentaje de código testeado.
 - En Mocha, tenemos una librería externa llamada Istanbul
+
+## TDD == 'Test Driven Developement'
+
+### Leyes
+
+- No escribiraś código de producción sin antes escribir un test que falle.
+- No escribiraś más de test unitario...
+
+### Reglas básicas
+
+1. TDD especifica una serie de reglas que han de cumplirse:
+2. Tener bien definidos los requisitos de la funcionalidad a realizar  
+   a. Una mala definición de los requisitos provocaría que no se siguiera TDD de forma adecuada e implicaría una pérdida innecesaria de tiempo.
+3. Contemplar todos los casos posibles, tanto de éxito como de error en los criterios d aceptación de la funcionalidad.
+4. Diseñar el test:  
+   a. Debemos ceñirnos a testear únicamente la lógica de cada elemento, utilizando mocks para abastraernos de otras posibles capas o servicios qeu necesitemos utilizar.  
+   Esto es flexible, por ello es el desarrollador el encargado de decidir si es mejor utilizar mocks o usar los servicios reales en el test.
+5. qué queremos probar  
+   a. Esto implica también el punto de vista del desarrollador
+6. ¿Cuantos test son necesarios?
+
+### Principios
+
+Principios SOLID:
+
+- S Responsabilidad simple (cada módulo o clase tener una única responsabilidad)
+- O Abierto/cerrado Poder ser extendida sin modificarla.
+- L Sustitución..
+
+### Beneficios
+
+- Mayor calidad de código
+- El código pasa los test --> funciona
+- Simplicidad
+- Menos redundancia
+- Mayor productividad al necesitar menor tiempo de debugging
+- Se reduce el número de errores.
+
+### Otras aproximaciones al TDD
+
+- BDD === 'Behavior Driven Development'
+  - Basado en el testing
+  - Lenguaje común para unir la parte técnica y negocio
+  - Las prubas de aceptación son las conocidas como ...
+  - Framework más conocido es Cucumber
+  - Sitanxis Gherkins:
+    - **Given** I am on the home page
+    - **When** I enter my username "bljlb"
+    - **And** I enter my password "dkjfasdjk"
+    - **Then** I see the main page of the app
+  - Defines comportamientos, no pruebas
+  - Mejora comunicación entre desarrolladores, testers, usuarios, y la dirección
+  - Curva aprendizaje menor que TDD
+  - Naturaleza no técnica... llega a mayor público
+  - Encaja perfectamente en metodología ágiles
+  - Enfoque de definición--- ayuda a una aceptación común de funcionalidades antes de empezar el desarrollo
+  - _Inconvenientes_:
+    - Errores no identificados en el alcance de la funcionalidad
+    - Uso con bases de datos
+    - Difícil de implementar en front-end
+    - Gran inversión de tiempo
+    - Gran comunicación entre cliente y desarrollador
+    - Necesidad de tener un equipo de desarrolladores centrados en el trabajo con los clientes.
