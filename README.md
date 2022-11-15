@@ -151,5 +151,76 @@ Es un framework que se basa en el comportamiento del código JavaScript dentro d
 - Muy parecido a mocha
 - Expande su librería de testing.
 
-instalar control sintáctico de jest
+instalar control sintáctico de jest en visual studio
 npm i -D @types/jest
+
+jest --watchAll --> vigilancia en vivo, mientras grabamos
+
+## Testing como Pro
+
+### Tunning test
+
+Jest muchas posibilidades de comparación (**matchers**), pero a veces sería necesario expandir las capacidades. Esto se consigue tocando la configuración.
+Ejemplos:
+
+- axios-mock-adapter
+- jest-extended
+
+#### Hooks
+
+Podemos customizar acciones que se realicen a cada test, antes o después y por cada test suite también. Son:
+
+- beforeAll
+- beforeEach
+- afterAll
+- afterEach  
+  Ejemplo de uso sería eliminar todas las inserciones de una base de datos _después_ de haber echo un test de inserción
+
+#### Manejo de excepciones
+
+Jest nos permite evaluar los tests cuyas funciones o métodos que estamos evaluando lanzan excepciones.  
+La particularidad es qeu no lo que le vamos a pasar a expect() será un callback y no un valor calculado.
+
+#### Testear promesas
+
+Deberemos comprobar que nuestro código funciona (pasa los tests) correctamente usando esos recurso de terceros.  
+**No debemos testear los recursos en sí**  
+Soluciones de Jest:
+
+- Ivocar aquellas funciones que contengan promesas y, una vez se resuelve, testear su correcta manipulación, transformación, etc.
+- Utilizar los métodos `.resolves` y `.rejects` para evaluar cuando la promise resuelve o rechaza, respectivamente.
+
+#### Mocks
+
+- Son objetos que imitan el comportamiento de objetos reales de una forma controlada.
+- Se usan para probar otros objetos en test unitarios que esperan ciertas respuestas de alguna libería, base de datos o de una clase y esas respuestas no son necesarioas para la ejecución de nuestra prueba.
+- Ejemplos:
+
+  - Devolver regitros de una DB
+  - Insertar elementos en una DB
+  - Llamadas a apis de terceros que consumen por llamada
+  - Imitar registros de actividad en un log
+
+- Cada framework de test implementa sus mocks de una forma. En jest podemos crear mocks de cualquier cosa.
+- Podemos crear un mock de una clase, una dependencia externa que se encuentre en el node_modules, etc...
+- ...
+- Gracias a los mocks podemos tener métricas de :
+
+  - Las veces que se llama una fucnión
+  - Los párametros con los que se ha llamado a dicha función
+  - El output que haya generado la llamada al mock  
+    Tambièn podemos modificar el comportamiento.
+
+- En jest usaremos:
+  - .mock: para cargar nuestros propios mocks.
+  - .fn: para generar funciones mock desde 0
+  - .spyOn: para generar también funciones mock de una función ya existente
+
+#### Coverage
+
+- Análisis cuantitativa de la calidad de nuestras pruebas unitarias
+- Gracias a esto se pueden sacar varias conclusiones:
+  - Podemos necesitar más tests
+  - Hay código en la app que, actualmente, no se usa y por lo tanto se puede eliminar ...
+- Está integrado con el flag _--coverage_, que nos devuelve una tabla en terminal dónde se especifica el porcentaje de código testeado.
+- En Mocha, tenemos una librería externa llamada Istanbul
