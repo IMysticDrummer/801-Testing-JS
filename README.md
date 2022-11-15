@@ -151,6 +151,7 @@ Es un framework que se basa en el comportamiento del código JavaScript dentro d
 - Muy parecido a mocha
 - Expande su librería de testing.
 
+npx jest --init --> genera el archivo de configuración
 instalar control sintáctico de jest en visual studio
 npm i -D @types/jest
 
