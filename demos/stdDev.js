@@ -1,8 +1,4 @@
-// si avg tarda 1s
-export const avg = function(array) {
-    return array.reduce((prev, curr) => (prev + curr), 0) / array.length
-}
-
+import {avg} from './avg.js'
 
 export const stdDev = function(array) {
     const mean = avg(array) // 1s

@@ -10,7 +10,13 @@ const failedRequest = () => {
     return axios.get(`${BASE_URL}/status/403`)
 }
 
+const randomRequest = () => {
+    return axios.get(`${BASE_URL}/status/200,401`);
+}
+  
+
 module.exports = {
     successfulRequest,
-    failedRequest
+    failedRequest,
+    randomRequest
 }
