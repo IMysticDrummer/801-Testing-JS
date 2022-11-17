@@ -6,7 +6,7 @@ describe('Testing Carrito class', () => {
     name: 'Nigiri',
     price: 1.6,
   };
-  let watterItem = {
+  let waterItem = {
     name: 'Bottle of watter',
     price: 1,
   };
@@ -27,11 +27,12 @@ describe('Testing Carrito class', () => {
   });
 
   describe('addItem', () => {
+    let nigiri;
     beforeEach(() => {
-      carrito.addItem(nigiriItem);
+      nigiri = carrito.addItem(nigiriItem);
     });
     it('Should have the item added in the Carrito.items', () => {
-      expect(carrito.items).toContainEqual(nigiriItem);
+      expect(carrito.items).toContainEqual(nigiri);
     });
     it('Should not contain an empty object when adding a nigiriItem', () => {
       expect(carrito.items).not.toContainEqual({});
@@ -49,9 +50,17 @@ describe('Testing Carrito class', () => {
         /must be an object/i
       );
     });
-    it.todo(
-      'Should throw an error when trying to add an item without name or price'
-    );
+    // it.todo('Should throw an error when trying to add an item without name or price')
+    it('Should throw an error when trying to add an item without name or price', () => {
+      expect(() => carrito.addItem({ foo: 'bar' })).toThrow(
+        /must have name and price/i
+      );
+    });
+    it('Should return the added product with an id', () => {
+      const newItem = carrito.addItem(nigiriItem);
+      expect(newItem).toHaveProperty('id');
+      expect(newItem).toMatchObject(nigiriItem);
+    });
   });
 
   describe('getTotalCheckout', () => {
@@ -66,15 +75,52 @@ describe('Testing Carrito class', () => {
     });
     it('Should return 2.6 when adding 1 nigiriItems and 1 watter', () => {
       carrito.addItem(nigiriItem);
-      carrito.addItem(watterItem);
+      carrito.addItem(waterItem);
       expect(carrito.getTotalCheckout()).toBeCloseTo(2.6);
     });
 
     it('Should return 4.2 when adding 2 nigiriItems and 1 watter', () => {
       carrito.addItem(nigiriItem);
       carrito.addItem(nigiriItem);
-      carrito.addItem(watterItem);
+      carrito.addItem(waterItem);
       expect(carrito.getTotalCheckout()).toBeCloseTo(4.2);
+    });
+  });
+  describe('removeItem', () => {
+    // it.todo('Aplicar TDD para remove item')
+    it('Should return an empty array after adding 1 nigiri and removing 1 nigiri', () => {
+      let nigiriAdded = carrito.addItem(nigiriItem);
+      carrito.removeItem(nigiriAdded);
+      expect(carrito.items).toHaveLength(0);
+    });
+    it('Should return an array with 1 water array after adding 1 nigiri, 1 water and removing 1 nigiri', () => {
+      let nigiriAdded = carrito.addItem(nigiriItem);
+      let waterAdded = carrito.addItem(waterItem);
+      carrito.removeItem(nigiriAdded);
+      expect(carrito.items).toHaveLength(1);
+      expect(carrito.items).toContainEqual(waterAdded);
+    });
+    it('Should return an array with 1 nigiri array after adding 2 nigiri, and removing 1 nigiri', () => {
+      let nigiri1 = carrito.addItem(nigiriItem);
+      let nigiri2 = carrito.addItem(nigiriItem);
+      carrito.removeItem(nigiri1);
+      expect(carrito.items).toHaveLength(1);
+      expect(carrito.items).toContainEqual(nigiri2);
+    });
+  });
+  // pista: deberéis modificar el test también de addItem para generar un id cuando se añade el item
+
+  describe('checkitem()', () => {
+    it('Should check an item before adding', () => {
+      const spy = jest.spyOn(carrito, 'checkItem');
+      //si llamas a addItem
+      carrito.addItem(nigiriItem);
+      //Entonces checkItem, muestra función espiada, tiene que ser invocada
+      expect(spy).toHaveBeenCalled();
+      //el input tiene que ser el mismo que addItem
+      expect(spy).toHaveBeenCalledWith(nigiriItem);
+      //tiene que haberse llamado una única vez
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });
